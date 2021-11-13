@@ -6,10 +6,10 @@ const io = require('@actions/io');
 const exec = require('@actions/exec');
 
 var state = core.getState();
-var pre = core.getInput("pre");
-var preIf = core.getInput("pre-if");
 
 if(!state) {
+    var pre = core.getInput("pre");
+    var preIf = core.getInput("pre-if");
     if(pre && (!preIf || JSON.parse(preIf))) {
         state = "pre";
         core.saveState("main");
