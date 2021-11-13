@@ -1,19 +1,23 @@
 inputs:
+  continue-on-error: {}
   shell:
     default: ${{runner.os == 'windows' && 'powershell' || 'bash'}}
   shell-ext: {}
   shell-newline: {}
   pre: {}
+  pre-continue-on-error: {}
   pre-if: {}
   pre-shell: {}
   pre-shell-ext: {}
   pre-shell-newline: {}
   main: {}
+  main-continue-on-error: {}
   main-if: {}
   main-shell: {}
   main-shell-ext: {}
   main-shell-newline: {}
   post: {}
+  post-continue-on-error: {}
   post-if: {}
   post-shell: {}
   post-shell-ext: {}

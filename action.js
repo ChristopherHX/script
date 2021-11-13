@@ -27,6 +27,7 @@ if(!script) {
 var shell = core.getInput(state + "-shell") || core.getInput("shell");
 var shellext = core.getInput(state + "-shell-ext") || core.getInput("shell-ext");
 var shellnewline = JSON.parse(core.getInput(state + "-shell-newline") || core.getInput("shell-newline") || "\"\"");
+var continueOnError = core.getBooleanInput(state + "-continue-on-error") || core.getBooleanInput("continue-on-error");
 
 switch(shell) {
     case "bash":
@@ -73,6 +74,9 @@ if(shell === "node") {
         } catch {
             code = 1;
         }
+        if(continueOnError) {
+            code = 0;
+        }
         await io.rmRF(scriptpath);
         process.exit(code);
     })()
@@ -84,6 +88,9 @@ if(shell === "node") {
             code = await exec.exec(finalcmdline);
         } catch {
             code = 1;
+        }
+        if(continueOnError) {
+            code = 0;
         }
         await io.rmRF(scriptpath);
         process.exit(code);
