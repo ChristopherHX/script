@@ -21,7 +21,7 @@ inputs:
 runs:
   using: node12
   pre: action.js
-  pre-if: always() && inputs.pre && (!inputs.pre-if || fromJSON(inputs.pre-if))
+  pre-if: always()
   main: action.js
   post: action.js
-  post-if: always() && inputs.post && (!inputs.post-if || fromJSON(inputs.post-if))
+  post-if: always()

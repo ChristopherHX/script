@@ -8,24 +8,15 @@ const exec = require('@actions/exec');
 var state = core.getState();
 
 if(!state) {
-    var pre = core.getInput("pre");
-    var preIf = core.getInput("pre-if");
-    if(pre && (!preIf || JSON.parse(preIf))) {
-        state = "pre";
-        core.saveState("main");
-    } else {
-        state = "main";
-        core.saveState("post");
-    }
+    state = "pre";
+    core.saveState("main");
 } else if(state === "main") {
     core.saveState("post");
 }
 
-if(state === "main") {
-    var mainIf = core.getInput("main-if");
-    if(mainIf && !JSON.parse(mainIf)) {
-        process.exit(0);
-    }
+var _if = core.getInput(state + "-if");
+if(_if && !JSON.parse(_if)) {
+    process.exit(0);
 }
 
 var script = core.getMultilineInput(state);
