@@ -5,19 +5,22 @@ inputs:
   shell-ext: {}
   shell-newline: {}
   pre: {}
-  pre-continue-on-error: {}
+  pre-continue-on-error:
+    default: false
   pre-if: {}
   pre-shell: {}
   pre-shell-ext: {}
   pre-shell-newline: {}
   main: {}
-  main-continue-on-error: {}
+  main-continue-on-error:
+    default: false
   main-if: {}
   main-shell: {}
   main-shell-ext: {}
   main-shell-newline: {}
   post: {}
-  post-continue-on-error: {}
+  post-continue-on-error:
+    default: false
   post-if: {}
   post-shell: {}
   post-shell-ext: {}
