@@ -5,13 +5,13 @@ const core = require('@actions/core');
 const io = require('@actions/io');
 const exec = require('@actions/exec');
 
-var state = core.getState();
+var state = core.getState("state");
 
 if(!state) {
     state = "pre";
-    core.saveState("main");
+    core.saveState("state", "main");
 } else if(state === "main") {
-    core.saveState("post");
+    core.saveState("state", "post");
 }
 
 var _if = core.getInput(state + "-if");
