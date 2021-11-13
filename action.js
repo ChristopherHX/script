@@ -34,15 +34,15 @@ switch(shell) {
         shellext = ".sh";
     break;
     case "sh":
-        shell = "sh -e -c {0}";
+        shell = "sh -e {0}";
         shellext = ".sh";
     break;
     case "pwsh":
-        shell = "pwsh -command . '{0}'";
+        shell = "pwsh -command \". '{0}'\"";
         shellext = ".ps1";
     break;
     case "powershell":
-        shell = "pwsh -command . '{0}'";
+        shell = "powershell -command \". '{0}'\"";
         shellext = ".ps1";
     break;
     case "python":
@@ -52,7 +52,9 @@ switch(shell) {
     case "cmd":
         shell = "cmd /D /E:ON /V:OFF /S /C \"CALL \"{0}\"\"";
         shellext = ".cmd";
-        shellnewline = "\r\n";
+        if(!shellnewline) {
+            shellnewline = "\r\n";
+        }
     case "node":
         shellext = ".js";
     break;
