@@ -67,14 +67,24 @@ var scriptpath = path.join(os.tmpdir(), "actionscript-" + process.pid + (shellex
 fs.writeFileSync(scriptpath, script.join(shellnewline));
 if(shell === "node") {
    (async function() {
-        var code = await exec.exec(process.argv0, [scriptpath]);
+        var code = 0;
+        try {
+            code = await exec.exec(process.argv0, [scriptpath]);
+        } catch {
+            code = 1;
+        }
         await io.rmRF(scriptpath);
         process.exit(code);
     })()
 } else {
     var finalcmdline = shell.replace(/\{0\}/g, scriptpath);
     (async function() {
-        var code = await exec.exec(finalcmdline);
+        var code = 0;
+        try {
+            code = await exec.exec(finalcmdline);
+        } catch {
+            code = 1;
+        }
         await io.rmRF(scriptpath);
         process.exit(code);
     })()
