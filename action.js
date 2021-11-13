@@ -67,9 +67,9 @@ if(!shellnewline) {
 var scriptpath = path.join(os.tmpdir(), "actionscript-" + process.pid + (shellext || ""));
 fs.writeFileSync(scriptpath, script.join(shellnewline));
 if(process.env["NODE_PATH"]) {
-    process.env["NODE_PATH"] += path.delimiter + require.main.path;
+    process.env["NODE_PATH"] += path.delimiter + path.join(require.main.path, "node_modules");
 } else {
-    process.env["NODE_PATH"] = require.main.path;
+    process.env["NODE_PATH"] = path.join(require.main.path, "node_modules");
 }
 if(shell === "node") {
    (async function() {
