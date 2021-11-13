@@ -1,5 +1,6 @@
 inputs:
-  continue-on-error: {}
+  continue-on-error:
+    default: false
   shell:
     default: ${{runner.os == 'windows' && 'powershell' || 'bash'}}
   shell-ext: {}
