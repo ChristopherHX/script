@@ -75,7 +75,7 @@ if(shell === "node") {
    (async function() {
         var code = 0;
         try {
-            code = await exec.exec(process.argv0, [scriptpath]);
+            code = await exec.exec(process.execPath, [scriptpath]);
         } catch {
             code = 1;
         }
