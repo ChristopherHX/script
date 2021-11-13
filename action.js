@@ -61,7 +61,7 @@ if(!shellnewline) {
     shellnewline = "\n";
 }
 
-var scriptpath = path.join(os.tmpdir(), "actionscript" + (shellext || ""));
+var scriptpath = path.join(os.tmpdir(), "actionscript-" + process.pid + (shellext || ""));
 fs.writeFileSync(scriptpath, script.join(shellnewline));
 if(shell === "node") {
    (async function() {
