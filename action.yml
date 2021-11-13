@@ -1,0 +1,19 @@
+inputs:
+  shell:
+    default: ${{runner.os == 'windows' && 'powershell' || 'bash'}}
+  pre: {}
+  pre-if: {}
+  pre-shell: {}
+  main: {}
+  main-if: {}
+  main-shell: {}
+  post: {}
+  post-if: {}
+  post-shell: {}
+runs:
+  using: node12
+  pre: action.js
+  pre-if: always() && inputs.pre && (!inputs.pre-if || fromJSON(inputs.pre-if))
+  main: action.js
+  post: action.js
+  post-if: always() && inputs.post && (!inputs.post-if || fromJSON(inputs.post-if))
