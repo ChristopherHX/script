@@ -2,18 +2,22 @@ inputs:
   shell:
     default: ${{runner.os == 'windows' && 'powershell' || 'bash'}}
   shell-ext: {}
+  shell-newline: {}
   pre: {}
   pre-if: {}
   pre-shell: {}
   pre-shell-ext: {}
+  pre-shell-newline: {}
   main: {}
   main-if: {}
   main-shell: {}
   main-shell-ext: {}
+  main-shell-newline: {}
   post: {}
   post-if: {}
   post-shell: {}
   post-shell-ext: {}
+  post-shell-newline: {}
 runs:
   using: node12
   pre: action.js
