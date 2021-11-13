@@ -79,6 +79,9 @@ if(shell === "node") {
         } catch {
             code = 1;
         }
+        if(state === "main") {
+            core.setOutput("outcome", code === 0 ? "success" : "failure");
+        }
         if(continueOnError) {
             code = 0;
         }
@@ -93,6 +96,9 @@ if(shell === "node") {
             code = await exec.exec(finalcmdline);
         } catch {
             code = 1;
+        }
+        if(state === "main") {
+            core.setOutput("outcome", code === 0 ? "success" : "failure");
         }
         if(continueOnError) {
             code = 0;
