@@ -2,7 +2,7 @@ inputs:
   continue-on-error:
     default: false
   shell:
-    default: ${{runner.os == 'windows' && 'powershell' || 'bash'}}
+    default: ${{runner.os == 'windows' && (job.container && 'cmd' || 'powershell') || (job.container && 'sh' || 'bash')}}
   shell-ext: {}
   shell-newline: {}
   pre: {}
