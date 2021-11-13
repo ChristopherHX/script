@@ -35,7 +35,7 @@ if(!script) {
 
 var shell = core.getInput(state + "-shell") || core.getInput("shell");
 var shellext = core.getInput(state + "-shell-ext") || core.getInput("shell-ext");
-var shellnewline = JSON.parse(core.getInput(state + "-shell-newline") || core.getInput("shell-newline"));
+var shellnewline = JSON.parse(core.getInput(state + "-shell-newline") || core.getInput("shell-newline") || "\"\"");
 
 switch(shell) {
     case "bash":
