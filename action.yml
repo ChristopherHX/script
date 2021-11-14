@@ -28,8 +28,8 @@ inputs:
   post-shell-newline: {}
 runs:
   using: node12
-  pre: action.js
+  pre: pre.js
   pre-if: always()
-  main: action.js
-  post: action.js
+  main: main.js
+  post: post.js
   post-if: always()
