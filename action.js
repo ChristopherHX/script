@@ -12,7 +12,7 @@ exports.run = state => {
     }
 
     var script = core.getMultilineInput(state);
-    if(!script) {
+    if(!script || script.length === 0) {
         process.exit(0);
     }
 
