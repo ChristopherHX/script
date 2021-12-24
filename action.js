@@ -48,6 +48,7 @@ exports.run = state => {
             if(!shellnewline) {
                 shellnewline = "\r\n";
             }
+        break;
         case "node":
             shellext = ".js";
         break;
