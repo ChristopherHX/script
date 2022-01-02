@@ -20,6 +20,7 @@ exports.run = state => {
     var shellext = core.getInput(state + "-shell-ext") || core.getInput("shell-ext");
     var shellnewline = JSON.parse(core.getInput(state + "-shell-newline") || core.getInput("shell-newline") || "\"\"");
     var continueOnError = core.getBooleanInput(state + "-continue-on-error") || core.getBooleanInput("continue-on-error");
+    var fixup = content => content;
 
     switch(shell) {
         case "bash":
@@ -37,6 +38,7 @@ exports.run = state => {
         case "powershell":
             shell = "powershell -command \". '{0}'\"";
             shellext = ".ps1";
+            fixup = content => `\$ErrorActionPreference = 'stop'${shellnewline}${content}${shellnewline}if ((Test-Path -LiteralPath variable:\\LASTEXITCODE)) { exit \$LASTEXITCODE }`;
         break;
         case "python":
             shell = "python {0}";
@@ -48,6 +50,7 @@ exports.run = state => {
             if(!shellnewline) {
                 shellnewline = "\r\n";
             }
+            fixup = content => `@echo off${shellnewline}${content}`;
         break;
         case "node":
             shellext = ".js";
@@ -58,7 +61,7 @@ exports.run = state => {
     }
 
     var scriptpath = path.join(os.tmpdir(), "actionscript-" + process.pid + (shellext || ""));
-    fs.writeFileSync(scriptpath, script.join(shellnewline));
+    fs.writeFileSync(scriptpath, fixup(script.join(shellnewline)));
     if(process.env["NODE_PATH"]) {
         process.env["NODE_PATH"] += path.delimiter + path.join(require.main.path, "node_modules");
     } else {
