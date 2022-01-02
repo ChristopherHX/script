@@ -76,10 +76,10 @@ exports.run = state => {
             } catch {
                 code = 1;
             }
-            if(state === "main") {
-                core.setOutput("outcome", code === 0 ? "success" : "failure");
-            }
             if(continueOnError) {
+                if(state === "main") {
+                    core.setOutput("outcome", code === 0 ? "success" : "failure");
+                }
                 code = 0;
             }
             await io.rmRF(scriptpath);
@@ -94,10 +94,10 @@ exports.run = state => {
             } catch {
                 code = 1;
             }
-            if(state === "main") {
-                core.setOutput("outcome", code === 0 ? "success" : "failure");
-            }
             if(continueOnError) {
+                if(state === "main") {
+                    core.setOutput("outcome", code === 0 ? "success" : "failure");
+                }
                 code = 0;
             }
             await io.rmRF(scriptpath);
