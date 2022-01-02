@@ -34,6 +34,7 @@ exports.run = state => {
         case "pwsh":
             shell = "pwsh -command \". '{0}'\"";
             shellext = ".ps1";
+            fixup = content => `\$ErrorActionPreference = 'stop'${shellnewline}${content}${shellnewline}if ((Test-Path -LiteralPath variable:\\LASTEXITCODE)) { exit \$LASTEXITCODE }`;
         break;
         case "powershell":
             shell = "powershell -command \". '{0}'\"";
